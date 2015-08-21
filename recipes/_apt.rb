@@ -18,11 +18,7 @@ node['nginx-repo'].each do |repo, value|
     deb_src apt['deb-src']
     keyserver apt['keyserver']
     key apt['key']
-
-    # There is an error when adding key_proxy.  I have opened up an issue:
-    #  https://github.com/opscode-cookbooks/apt/issues/148
-    # key_proxy value['apt']['key_proxy']
-
+    key_proxy apt['key_proxy']
     cookbook apt['cookbook']
     cache_rebuild apt['cache_rebuild']
   end if value['managed'] && value.key?('apt')
