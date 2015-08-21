@@ -2,27 +2,30 @@ require 'foodcritic'
 require 'kitchen'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
+require 'stove/rake_task'
 
-# Style tests. RuboCop and FoodCritic
+# Style tests
 namespace :style do
   desc 'Run Ruby style checks'
-  RuboCop::RakeTask.new(:ruby)
+  RuboCop::RakeTask.new(:rubocop)
 
   desc 'Run Chef style checks'
-  FoodCritic::Rake::LintTask.new(:chef)
+  FoodCritic::Rake::LintTask.new(:foodcritic)
 end
 
 desc 'Run all style checks'
-task style: ['style:chef', 'style:ruby']
+task style: ['style:rubocop', 'style:foodcritic']
 
-# Unit tests.  RSpec and ChefSpec
+# Unit tests
 namespace :unit do
-  # RSpec and ChefSpec
   desc 'Run ChefSpec examples'
-  RSpec::Core::RakeTask.new(:rspec)
+  RSpec::Core::RakeTask.new(:spec)
 end
 
-# Integration tests. Kitchen.ci and Docker
+desc 'Run all unit tests'
+task unit: ['unit:spec']
+
+# Integration tests
 namespace :integration do
   desc 'Run Test Kitchen with Vagrant'
   task :vagrant do
@@ -41,10 +44,26 @@ namespace :integration do
       instance.test(:always)
     end
   end
+
+  desc 'Run Test Kitchen with AWS'
+  task :aws do
+    Kitchen.logger = Kitchen.default_file_logger
+    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.aws.yml')
+    config = Kitchen::Config.new(loader: @loader)
+    config.instances.each do |instance|
+      instance.test(:always)
+    end
+  end
 end
 
-desc 'Run all unit tests'
-task unit: ['unit:rspec']
+desc 'Run all integration tests'
+task integration: ['integration:vagrant', 'integration:docker', 'integration:aws']
+
+# Publish
+Stove::RakeTask.new
 
 # Default
 task default: %w(style unit)
+
+# All tasks
+task all: %w(style unit integration)
