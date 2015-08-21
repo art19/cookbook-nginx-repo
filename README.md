@@ -3,9 +3,9 @@ nginx-repo Cookbook
 [![Build Status](https://travis-ci.org/st-isidore-de-seville/cookbook-nginx-repo.svg?branch=master)](https://travis-ci.org/st-isidore-de-seville/cookbook-nginx-repo)
 [![Chef Cookbook](https://img.shields.io/cookbook/v/nginx-repo.svg)](https://supermarket.chef.io/cookbooks/nginx-repo)
 
-Configures nginx Vendor-Specific Repositories.
+Configures NGINX Vendor-Specific Repositories.
 
-This cookbook configures nginx repositories per
+This cookbook configures NGINX repositories per
 http://nginx.org/en/linux_packages.html for apt and yum.
 
 Requirements
