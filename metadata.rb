@@ -9,12 +9,14 @@ version '0.1.0'
 source_url 'https://github.com/st-isidore-de-seville/cookbook-nginx-repo'
 issues_url 'https://github.com/st-isidore-de-seville/cookbook-nginx-repo/issues'
 
+recipe 'nginx-repo::default', 'Configures NGINX Vendor-Specific Repository'
+
 depends 'apt', '~> 2.8'
 depends 'yum', '~> 3.6'
 
 # Supported Platforms:
 #  http://nginx.org/en/linux_packages.html
-supports 'rhel', '>= 5', '< 8'
-supports 'centos', '>= 5', '< 8'
-supports 'debian', '>= 6', '< 9'
-supports 'ubuntu', '10.04', '12.04', '14.04', '14.10'
+supports 'rhel'
+supports 'centos'
+supports 'debian'
+supports 'ubuntu'
