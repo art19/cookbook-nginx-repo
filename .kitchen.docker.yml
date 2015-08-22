@@ -1,0 +1,118 @@
+driver:
+  name: docker
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-5
+  - name: centos-6
+  - name: centos-7
+  - name: debian-6.0.10
+  - name: debian-7.8
+  - name: debian-8.1
+  - name: ubuntu-10.04
+  - name: ubuntu-12.04
+  - name: ubuntu-14.04
+  - name: ubuntu-14.10
+
+suites:
+  - name: dflt_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+
+  - name: dflt_w_dbn
+    run_list:
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    includes:
+      - debian-8.1
+
+  - name: dflt_w_ubtu
+    run_list:
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    includes:
+      - ubuntu-12.04
+      - ubuntu-14.04
+      - ubuntu-14.10
+
+  - name: mnln_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    attributes:
+      nginx-repo:
+        nginx-stable:
+          managed: false
+        nginx-mainline:
+          managed: true
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+
+  - name: mnln_w_dbn
+    run_list:
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    attributes:
+      nginx-repo:
+        nginx-stable:
+          managed: false
+        nginx-mainline:
+          managed: true
+    includes:
+      - debian-8.1
+
+  - name: mnln_w_ubtu
+    run_list:
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx]
+    attributes:
+      nginx-repo:
+        nginx-stable:
+          managed: false
+        nginx-mainline:
+          managed: true
+    includes:
+      - ubuntu-12.04
+      - ubuntu-14.04
+      - ubuntu-14.10
+
+  - name: stbl_src_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+    attributes:
+      nginx-repo:
+        nginx-stable-source:
+          managed: true
+
+  - name: mnln_src_w_ym
+    run_list:
+      - recipe[test::yum_utils]
+      - recipe[nginx-repo]
+      - recipe[test::install_nginx_source]
+    includes:
+      - centos-5
+      - centos-6
+      - centos-7
+    attributes:
+      nginx-repo:
+        nginx-mainline:
+          managed: true
+        nginx-mainline-source:
+          managed: true

@@ -1,0 +1,22 @@
+# http://www.invalidchecksum.net/2015/08/travis-ci-gce-docker-test-kitchen.html
+language: ruby
+
+bundler_args: --without local-integration
+
+sudo: required
+
+services:
+  - docker
+
+# mitigate travis-ci timing out on
+#  dep-selector-libgecode 1.0.2 with native extensions
+install: travis_wait bundle install
+
+script:
+  - bundle exec rake style
+  - bundle exec rake unit
+  - bundle exec kitchen test -d never
+
+env:
+  global:
+    - KITCHEN_YAML=.kitchen.docker.yml
