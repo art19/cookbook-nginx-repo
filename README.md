@@ -17,7 +17,7 @@ Requirements
 Attributes
 ----------
 #### nginx-repo::default
-Per http://wiki.nginx.org/Install, there are currently two versions of nginx.
+Per http://wiki.nginx.org/Install, there are currently two versions of NGINX.
 The mainline branch gets new features and bugfixes sooner but might introduce
 new bugs as well.  Critical bugfixes are backported to the stable branch.  In
 general, the stable release is recommended, but the mainline release is
