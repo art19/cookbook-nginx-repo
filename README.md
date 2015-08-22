@@ -5,7 +5,8 @@ nginx-repo Cookbook
 
 Configures NGINX Vendor-Specific Repositories.
 
-This cookbook configures NGINX repositories per http://nginx.org/en/linux_packages.html for apt and yum.
+This cookbook configures NGINX repositories per
+http://nginx.org/en/linux_packages.html for apt and yum.
 
 Requirements
 ------------
