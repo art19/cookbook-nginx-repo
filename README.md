@@ -23,281 +23,170 @@ new bugs as well.  Critical bugfixes are backported to the stable branch.  In
 general, the stable release is recommended, but the mainline release is
 typically quite stable as well.
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['managed']</tt></td>
-    <td>Boolean</td>
-    <td>Does this cookbook manage the install of the nginx-stable repo?</td>
-    <td><tt>true</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['managed']</tt></td>
-    <td>Boolean</td>
-    <td>Does this cookbook manage the install of the nginx-mainline repo?</td>
-    <td><tt>false</tt></td>
-  </tr>
-</table>
+- `['nginx-repo']['nginx-stable']['managed']`
+  - _Type:_ Boolean
+  - _Description:_ Does this cookbook manage the install of the nginx-stable repo?
+  - _Default:_ `true`
+- `['nginx-repo']['nginx-mainline']['managed']`
+  - _Type:_ Boolean
+  - _Description:_ Does this cookbook manage the install of the nginx-mainline repo?
+  - _Default:_ `false`
 
 #### nginx-repo::_apt
-The apt recipe is for managing the nginx apt repostories.  Any attribute
+The apt recipe is for managing the NGINX apt repostories.  Any attribute
 supported by the [apt cookbook](https://github.com/opscode-cookbooks/apt#attribute-parameters) is
 supported by this cookbook and can be used to override attributes in this cookbook.
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['apt']['uri']</tt></td>
-    <td>String</td>
-    <td>URI of nginx Stable Repo</td>
-    <td><tt>http://nginx.org/packages/#{node['platform']}</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['apt']['distribution']</tt></td>
-    <td>String</td>
-    <td>Package distribution of nginx Stable Repo</td>
-    <td><tt>node['lsb']['codename']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['apt']['components']</tt></td>
-    <td>Array</td>
-    <td>nginx Stable Repo Package Groupings</td>
-    <td><tt>['nginx']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['apt']['key']</tt></td>
-    <td>String</td>
-    <td>Cookbook File for nginx Stable Repo Signing Key</td>
-    <td><tt>nginx_signing.key</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['apt']['deb-src']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not to include the nginx-stable source repo?</td>
-    <td><tt>false</tt></td>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['apt']['uri']</tt></td>
-    <td>String</td>
-    <td>URI of nginx Mainline Repo</td>
-    <td><tt>http://nginx.org/packages/mainline/#{node['platform']}</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['apt']['distribution']</tt></td>
-    <td>String</td>
-    <td>Package distribution of nginx Mainline Repo</td>
-    <td><tt>node['lsb']['codename']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['apt']['components']</tt></td>
-    <td>Array</td>
-    <td>nginx Mainline Repo Package Groupings</td>
-    <td><tt>['nginx']</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['apt']['key']</tt></td>
-    <td>String</td>
-    <td>Cookbook File for nginx Mainline Repo Signing Key</td>
-    <td><tt>nginx_signing.key</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['apt']['deb-src']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not to include the nginx-mainline source repo?</td>
-    <td><tt>false</tt></td>
-  </tr>
-</table>
+- `['nginx-repo']['nginx-stable']['apt']['uri']`
+  - _Type:_ String
+  - _Description:_ URI of NGINX Stable Repo
+  - _Default:_ `http://nginx.org/packages/#{node['platform']}`
+- `['nginx-repo']['nginx-stable']['apt']['distribution']`
+  - _Type:_ String
+  - _Description:_ Package distribution of NGINX Stable Repo
+  - _Default:_ `node['lsb']['codename']`
+- `['nginx-repo']['nginx-stable']['apt']['components']`
+  - _Type:_ Array
+  - _Description:_ NGINX Stable Repo Package Groupings
+  - _Default:_ `['nginx']`
+- `['nginx-repo']['nginx-stable']['apt']['key']`
+  - _Type:_ String
+  - _Description:_ Cookbook File for NGINX Stable Repo Signing Key
+  - _Default:_ `nginx_signing.key`
+- `['nginx-repo']['nginx-stable']['apt']['deb-src']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not to include the nginx-stable source repo?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline']['apt']['uri']`
+  - _Type:_ String
+  - _Description:_ URI of NGINX Mainline Repo
+  - `http://nginx.org/packages/mainline/#{node['platform']}`
+- `['nginx-repo']['nginx-mainline']['apt']['distribution']`
+  - _Type:_ String
+  - _Description:_ Package distribution of NGINX Mainline Repo
+  - _Default:_ `node['lsb']['codename']`
+- `['nginx-repo']['nginx-mainline']['apt']['components']`
+  - _Type:_ Array
+  - _Description:_ NGINX Mainline Repo Package Groupings
+  - _Default:_ `['nginx']`
+- `['nginx-repo']['nginx-mainline']['apt']['key']`
+  - _Type:_ String
+  - _Description:_ Cookbook File for NGINX Mainline Repo Signing Key
+  - _Default:_ `nginx_signing.key`
+- `['nginx-repo']['nginx-mainline']['apt']['deb-src']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not to include the nginx-mainline source repo?
+  - _Default:_ `false`
 
 #### nginx-repo::_yum
-The yum recipe is for managing the nginx yum repostories.  Any attribute
+The yum recipe is for managing the NGINX yum repostories.  Any attribute
 supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters) is
 supported by this cookbook and can be used to override attributes in this cookbook.
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['managed']</tt></td>
-    <td>Boolean</td>
-    <td>Does this cookbook manage the install of the nginx-stable-source repo?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['managed']</tt></td>
-    <td>Boolean</td>
-    <td>Does this cookbook manage the install of the nginx-mainline-source repo?</td>
-    <td><tt>false</tt></td>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['repositoryid']</tt></td>
-    <td>String</td>
-    <td>Unique Name for nginx Stable Repo</td>
-    <td><tt>nginx-stable</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['description']</tt></td>
-    <td>String</td>
-    <td>Description of nginx Stable Repo</td>
-    <td><tt>nginx stable repo</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['baseurl']</tt></td>
-    <td>String</td>
-    <td>URL of nginx Stable Repo</td>
-    <td><tt>http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['gpgcheck']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not nginx Stable Repo should perform GPG check of packages?
-    </td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['sslverify']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not yum will verify the nginx Stable Repo SSL host?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable']['yum']['enabled']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not the nginx Stable Repo is enabled?</td>
-    <td><tt>true</tt></td>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['repositoryid']</tt></td>
-    <td>String</td>
-    <td>Unique Name for nginx Stable Source Repo</td>
-    <td><tt>nginx-stable-source</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['description']</tt></td>
-    <td>String</td>
-    <td>Description of nginx Stable Source Repo</td>
-    <td><tt>nginx stable source repo</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['baseurl']</tt></td>
-    <td>String</td>
-    <td>URL of nginx Stable Source Repo</td>
-    <td><tt>http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['gpgcheck']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not nginx Stable Source Repo should perform GPG check of packages?
-    </td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['sslverify']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not yum will verify the nginx Stable Source Repo SSL host?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-stable-source']['yum']['enabled']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not the nginx Stable Source Repo is enabled?</td>
-    <td><tt>true</tt></td>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['repositoryid']</tt></td>
-    <td>String</td>
-    <td>Unique Name for nginx Mainline Repo</td>
-    <td><tt>nginx-mainline</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['description']</tt></td>
-    <td>String</td>
-    <td>Description for nginx Mainline Repo</td>
-    <td><tt>nginx mainline repo</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['baseurl']</tt></td>
-    <td>String</td>
-    <td>URL of nginx Mainline Repo</td>
-    <td><tt>http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['gpgcheck']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not nginx Mainline Repo should perform GPG check of
-    packages?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['sslverify']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not yum will verify the nginx Mainline Repo SSL host?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline']['yum']['enabled']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not the nginx Mainline Repo is enabled?</td>
-    <td><tt>true</tt></td>
-  </tr>
-
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['repositoryid']</tt></td>
-    <td>String</td>
-    <td>Unique Name for nginx Mainline Source Repo</td>
-    <td><tt>nginx-mainline-source</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['description']</tt></td>
-    <td>String</td>
-    <td>Description of nginx Mainline Source Repo</td>
-    <td><tt>nginx mainline source repo</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['baseurl']</tt></td>
-    <td>String</td>
-    <td>URL of nginx Mainline Source Repo</td>
-    <td><tt>http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['gpgcheck']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not nginx Mainline Source Repo should perform GPG check of packages?
-    </td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['sslverify']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not yum will verify the nginx Mainline Source Repo SSL host?</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['nginx-repo']['nginx-mainline-source']['yum']['enabled']</tt></td>
-    <td>Boolean</td>
-    <td>Whether or not the nginx Mainline Source Repo is enabled?</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+- `['nginx-repo']['nginx-stable-source']['managed']`
+  - _Type:_ Boolean
+  - _Description:_ Does this cookbook manage the install of the nginx-stable-source repo?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline-source']['managed']`
+  - _Type:_ Boolean
+  - _Description:_ Does this cookbook manage the install of the nginx-mainline-source repo?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-stable']['yum']['repositoryid']`
+  - _Type:_ String
+  - _Description:_ Unique Name for NGINX Stable Repo
+  - _Default:_ `nginx-stable`
+- `['nginx-repo']['nginx-stable']['yum']['description']`
+  - _Type:_ String
+  - _Description:_ Description of NGINX Stable Repo
+  - _Default:_ `nginx stable repo`
+- `['nginx-repo']['nginx-stable']['yum']['baseurl']`
+  - _Type:_ String
+  - _Description:_ URL of NGINX Stable Repo
+  - _Default:_ `http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/`
+- `['nginx-repo']['nginx-stable']['yum']['gpgcheck']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not NGINX Stable Repo should perform GPG check of packages?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-stable']['yum']['sslverify']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not yum will verify the NGINX Stable Repo SSL host?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-stable']['yum']['enabled']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not the NGINX Stable Repo is enabled?
+  - _Default:_ `true`
+- `['nginx-repo']['nginx-stable-source']['yum']['repositoryid']`
+  - _Type:_ String
+  - _Description:_ Unique Name for NGINX Stable Source Repo
+  - _Default:_ `nginx-stable-source`
+- `['nginx-repo']['nginx-stable-source']['yum']['description']`
+  - _Type:_ String
+  - _Description:_ Description of NGINX Stable Source Repo
+  - _Default:_ `nginx stable source repo`
+- `['nginx-repo']['nginx-stable-source']['yum']['baseurl']`
+  - _Type:_ String
+  - _Description:_ URL of NGINX Stable Source Repo
+  - _Default:_ `http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/`
+- `['nginx-repo']['nginx-stable-source']['yum']['gpgcheck']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not NGINX Stable Source Repo should perform GPG check of packages?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-stable-source']['yum']['sslverify']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not yum will verify the NGINX Stable Source Repo SSL host?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-stable-source']['yum']['enabled']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not the NGINX Stable Source Repo is enabled?
+  - _Default:_ `true`
+- `['nginx-repo']['nginx-mainline']['yum']['repositoryid']`
+  - _Type:_ String
+  - _Description:_ Unique Name for NGINX Mainline Repo
+  - _Default:_ `nginx-mainline`
+- `['nginx-repo']['nginx-mainline']['yum']['description']`
+  - _Type:_ String
+  - _Description:_ Description for NGINX Mainline Repo
+  - _Default:_ `nginx mainline repo`
+- `['nginx-repo']['nginx-mainline']['yum']['baseurl']`
+  - _Type:_ String
+  - _Description:_ URL of NGINX Mainline Repo
+  - _Default:_ `http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/`
+- `['nginx-repo']['nginx-mainline']['yum']['gpgcheck']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not NGINX Mainline Repo should perform GPG check of packages?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline']['yum']['sslverify']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not yum will verify the NGINX Mainline Repo SSL host?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline']['yum']['enabled']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not the NGINX Mainline Repo is enabled?
+  - _Default:_ `true`
+- `['nginx-repo']['nginx-mainline-source']['yum']['repositoryid']`
+  - _Type:_ String
+  - _Description:_ Unique Name for NGINX Mainline Source Repo
+  - _Default:_ `nginx-mainline-source`
+- `['nginx-repo']['nginx-mainline-source']['yum']['description']`
+  - _Type:_ String
+  - _Description:_ Description of NGINX Mainline Source Repo
+  - _Default:_ `nginx mainline source repo`
+- `['nginx-repo']['nginx-mainline-source']['yum']['baseurl']`
+  - _Type:_ String
+  - _Description:_ URL of NGINX Mainline Source Repo
+  - _Default:_ `http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/`
+- `['nginx-repo']['nginx-mainline-source']['yum']['gpgcheck']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not NGINX Mainline Source Repo should perform GPG check of packages?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline-source']['yum']['sslverify']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not yum will verify the NGINX Mainline Source Repo SSL host?
+  - _Default:_ `false`
+- `['nginx-repo']['nginx-mainline-source']['yum']['enabled']`
+  - _Type:_ Boolean
+  - _Description:_ Whether or not the NGINX Mainline Source Repo is enabled?
+  - _Default:_ `true`
 
 Usage
 -----
