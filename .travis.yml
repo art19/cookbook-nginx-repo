@@ -8,6 +8,10 @@ sudo: required
 services:
   - docker
 
+# mitigate travis-ci timing out on
+#  dep-selector-libgecode 1.0.2 with native extensions
+install: travis_wait bundle install
+
 script:
   - bundle exec rake style
   - bundle exec rake unit
