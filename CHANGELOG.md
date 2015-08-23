@@ -6,5 +6,5 @@ cookbook.
 
 0.1.0
 -----
-- St. Isidore de Seville (st.isidore.de.seville@gmail.com) - Initial release of
-  nginx-repo
+- St. Isidore de Seville (st.isidore.de.seville@gmail.com)
+  - Initial release of nginx-repo
