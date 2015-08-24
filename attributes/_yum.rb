@@ -3,7 +3,7 @@
 # Attributes:: _yum
 #
 
-if platform?('redhat') || platform?('centos')
+if platform_family?('rhel')
   # Does this cookbook manage the install of the NGINX Stable Source Repo?
   default['nginx-repo']['nginx-stable-source']['managed'] = false
   # Does this cookbook manage the install of the NGINX Mainline Source Repo?

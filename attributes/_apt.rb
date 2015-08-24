@@ -3,7 +3,7 @@
 # Attributes:: _apt
 #
 
-if platform?('debian') || platform?('ubuntu')
+if platform_family?('debian')
   baseurl_prefix = 'http://nginx.org/packages'
   baseurl_suffix = node['platform']
   codename = node['lsb']['codename']
