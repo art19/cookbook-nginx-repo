@@ -3,9 +3,9 @@ nginx-repo Cookbook
 [![Build Status](https://travis-ci.org/st-isidore-de-seville/cookbook-nginx-repo.svg?branch=master)](https://travis-ci.org/st-isidore-de-seville/cookbook-nginx-repo)
 [![Chef Cookbook](https://img.shields.io/cookbook/v/nginx-repo.svg)](https://supermarket.chef.io/cookbooks/nginx-repo)
 
-Configures NGINX Vendor-Specific Repositories.
+Installs/Configures NGINX Vendor-Specific Repositories.
 
-This cookbook configures NGINX repositories per
+This cookbook installs & configures NGINX repositories per
 http://nginx.org/en/linux_packages.html for apt and yum.
 
 Requirements
@@ -13,10 +13,17 @@ Requirements
 - Chef 11 or higher
 - Ruby 1.9 or higher (preferably from the Chef full-stack installer)
 - Network accessible package repositories
+- [apt Cookbook](https://supermarket.chef.io/cookbooks/apt) (only executed on
+  debian-ish platforms)
+- [yum Cookbook](https://supermarket.chef.io/cookbooks/yum) (only executed on
+  RHEL platforms)
 
 Attributes
 ----------
 #### nginx-repo::default
+The default recipe installs & configures NGINX repositories per
+http://nginx.org/en/linux_packages.html for apt and yum.
+
 Per http://wiki.nginx.org/Install, there are currently two versions of NGINX.
 The mainline branch gets new features and bugfixes sooner but might introduce
 new bugs as well.  Critical bugfixes are backported to the stable branch.  In
@@ -25,17 +32,20 @@ typically quite stable as well.
 
 - `['nginx-repo']['nginx-stable']['managed']`
   - _Type:_ Boolean
-  - _Description:_ Does this cookbook manage the install of the nginx-stable repo?
+  - _Description:_ Does this cookbook manage the install of the NGINX Stable
+    Repo?
   - _Default:_ `true`
 - `['nginx-repo']['nginx-mainline']['managed']`
   - _Type:_ Boolean
-  - _Description:_ Does this cookbook manage the install of the nginx-mainline repo?
+  - _Description:_ Does this cookbook manage the install of the NGINX Mainline
+    Repo?
   - _Default:_ `false`
 
 #### nginx-repo::_apt
-The apt recipe is for managing the NGINX apt repostories.  Any attribute
-supported by the [apt cookbook](https://github.com/opscode-cookbooks/apt#attribute-parameters) is
-supported by this cookbook and can be used to override attributes in this cookbook.
+The apt recipe is for installing & configuring the NGINX apt repostories.  Any
+attribute supported by the [apt cookbook](https://github.com/opscode-cookbooks/apt#attribute-parameters)
+is supported by this cookbook and can be used to override attributes in this
+cookbook.
 
 - `['nginx-repo']['nginx-stable']['apt']['uri']`
   - _Type:_ String
@@ -55,7 +65,7 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `nginx_signing.key`
 - `['nginx-repo']['nginx-stable']['apt']['deb-src']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not to include the nginx-stable source repo?
+  - _Description:_ Whether or not to include the NGINX Stable Source Repo?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline']['apt']['uri']`
   - _Type:_ String
@@ -75,21 +85,24 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `nginx_signing.key`
 - `['nginx-repo']['nginx-mainline']['apt']['deb-src']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not to include the nginx-mainline source repo?
+  - _Description:_ Whether or not to include the NGINX Mainline Source Repo?
   - _Default:_ `false`
 
 #### nginx-repo::_yum
-The yum recipe is for managing the NGINX yum repostories.  Any attribute
-supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters) is
-supported by this cookbook and can be used to override attributes in this cookbook.
+The yum recipe is for installing & configuring the NGINX yum repostories.  Any
+attribute supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters)
+is supported by this cookbook and can be used to override attributes in this
+cookbook.
 
 - `['nginx-repo']['nginx-stable-source']['managed']`
   - _Type:_ Boolean
-  - _Description:_ Does this cookbook manage the install of the nginx-stable-source repo?
+  - _Description:_ Does this cookbook manage the install of the NGINX Stable
+    Source Repo?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline-source']['managed']`
   - _Type:_ Boolean
-  - _Description:_ Does this cookbook manage the install of the nginx-mainline-source repo?
+  - _Description:_ Does this cookbook manage the install of the NGINX Mainline
+    Source Repo?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-stable']['yum']['repositoryid']`
   - _Type:_ String
@@ -105,11 +118,13 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/`
 - `['nginx-repo']['nginx-stable']['yum']['gpgcheck']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not NGINX Stable Repo should perform GPG check of packages?
+  - _Description:_ Whether or not NGINX Stable Repo should perform GPG check of
+    packages?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-stable']['yum']['sslverify']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not yum will verify the NGINX Stable Repo SSL host?
+  - _Description:_ Whether or not yum will verify the NGINX Stable Repo SSL
+    host?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-stable']['yum']['enabled']`
   - _Type:_ Boolean
@@ -129,11 +144,13 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `http://nginx.org/packages/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/`
 - `['nginx-repo']['nginx-stable-source']['yum']['gpgcheck']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not NGINX Stable Source Repo should perform GPG check of packages?
+  - _Description:_ Whether or not NGINX Stable Source Repo should perform GPG
+    check of packages?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-stable-source']['yum']['sslverify']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not yum will verify the NGINX Stable Source Repo SSL host?
+  - _Description:_ Whether or not yum will verify the NGINX Stable Source Repo
+    SSL host?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-stable-source']['yum']['enabled']`
   - _Type:_ Boolean
@@ -153,11 +170,13 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/$basearch/`
 - `['nginx-repo']['nginx-mainline']['yum']['gpgcheck']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not NGINX Mainline Repo should perform GPG check of packages?
+  - _Description:_ Whether or not NGINX Mainline Repo should perform GPG check
+    of packages?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline']['yum']['sslverify']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not yum will verify the NGINX Mainline Repo SSL host?
+  - _Description:_ Whether or not yum will verify the NGINX Mainline Repo SSL
+    host?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline']['yum']['enabled']`
   - _Type:_ Boolean
@@ -177,11 +196,13 @@ supported by this cookbook and can be used to override attributes in this cookbo
   - _Default:_ `http://nginx.org/packages/mainline/#{node['platform']}/#{node['platform_version'].to_i}/SRPMS/`
 - `['nginx-repo']['nginx-mainline-source']['yum']['gpgcheck']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not NGINX Mainline Source Repo should perform GPG check of packages?
+  - _Description:_ Whether or not NGINX Mainline Source Repo should perform GPG
+    check of packages?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline-source']['yum']['sslverify']`
   - _Type:_ Boolean
-  - _Description:_ Whether or not yum will verify the NGINX Mainline Source Repo SSL host?
+  - _Description:_ Whether or not yum will verify the NGINX Mainline Source Repo
+    SSL host?
   - _Default:_ `false`
 - `['nginx-repo']['nginx-mainline-source']['yum']['enabled']`
   - _Type:_ Boolean
