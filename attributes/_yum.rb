@@ -4,6 +4,8 @@
 #
 
 if platform_family?('rhel')
+  node['nginx-repo']['rhel']['supported-versions'] = ['5', '6', '7']
+  
   # Does this cookbook manage the install of the NGINX Stable Source Repo?
   default['nginx-repo']['nginx-stable-source']['managed'] = false
   # Does this cookbook manage the install of the NGINX Mainline Source Repo?

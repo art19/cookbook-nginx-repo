@@ -7,6 +7,10 @@
 #  supported by this cookbook and can be used to override attributes in this
 #  cookbook.
 
+# check if platform is supported
+codename = node['lsb']['codename']
+raise if not node['nginx-repo']['debian']['supported-codenames'].include?(codename)
+
 node['nginx-repo'].each do |repo, value|
   apt_repository repo do
     apt = value['apt']
