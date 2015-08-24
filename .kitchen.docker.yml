@@ -5,12 +5,17 @@ provisioner:
   name: chef_zero
 
 platforms:
+  # https://hub.docker.com/_/centos/
   - name: centos-5
   - name: centos-6
   - name: centos-7
-  - name: debian-6.0.10
-  - name: debian-7.8
-  - name: debian-8.1
+
+  # https://hub.docker.com/_/debian/
+  - name: debian-6
+  - name: debian-7
+  - name: debian-8
+
+  # https://hub.docker.com/_/ubuntu/
   - name: ubuntu-10.04
   - name: ubuntu-12.04
   - name: ubuntu-14.04
@@ -32,7 +37,7 @@ suites:
       - recipe[nginx-repo]
       - recipe[test::install_nginx]
     includes:
-      - debian-8.1
+      - debian-8
 
   - name: dflt_w_ubtu
     run_list:
@@ -70,7 +75,7 @@ suites:
         nginx-mainline:
           managed: true
     includes:
-      - debian-8.1
+      - debian-8
 
   - name: mnln_w_ubtu
     run_list:
