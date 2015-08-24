@@ -11,10 +11,7 @@ platforms:
   - name: centos-7
 
   # https://hub.docker.com/_/debian/
-  # testing fails using debian 6 despite the fact that it is technically
-  #  supported by NGINX.  this could be an ohai issue as it fails on:
-  # fail unless node['nginx-repo']['debian']['supported-codenames'].include?(codename)
-  # - name: debian-6
+  - name: debian-6
   - name: debian-7
   - name: debian-8
 

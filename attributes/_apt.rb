@@ -9,7 +9,7 @@ if platform_family?('debian')
   codename = node['lsb']['codename']
 
   default['nginx-repo']['debian']['supported-codenames'] =
-    %w(sqeeze wheezy jessie lucid precise trusty utopic)
+    %w(squeeze wheezy jessie lucid precise trusty utopic)
 
   default['nginx-repo'].tap do |repo|
     repo['nginx-stable']['apt'].tap do |apt|
