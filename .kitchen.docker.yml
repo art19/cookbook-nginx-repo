@@ -11,7 +11,7 @@ platforms:
   - name: centos-7
 
   # https://hub.docker.com/_/debian/
-  - name: debian-6
+  # - name: debian-6
   - name: debian-7
   - name: debian-8
 
