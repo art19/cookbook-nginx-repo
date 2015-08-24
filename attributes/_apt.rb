@@ -8,8 +8,8 @@ if platform_family?('debian')
   baseurl_suffix = node['platform']
   codename = node['lsb']['codename']
 
-  default['nginx-repo']['debian']['supported-codenames'] = ['sqeeze', 'wheezy', 'jessie', 'lucid', 'precise', 'trusty', 'utopic']
-  
+  default['nginx-repo']['debian']['supported-codenames'] = %w(sqeeze wheezy jessie lucid precise trusty utopic)
+
   default['nginx-repo'].tap do |repo|
     repo['nginx-stable']['apt'].tap do |apt|
       # URI of NGINX Stable Repo

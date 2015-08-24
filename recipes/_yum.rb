@@ -9,7 +9,7 @@
 
 # check is platform is supported
 platform_version = node['platform_version'].to_i.to_s
-raise if not node['nginx-repo']['rhel']['supported-versions'].include?(platform_version)
+raise unless node['nginx-repo']['rhel']['supported-versions'].include?(platform_version)
 
 node['nginx-repo'].each do |repo, value|
   yum_repository repo do
