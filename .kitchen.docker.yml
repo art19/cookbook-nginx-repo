@@ -37,6 +37,8 @@ suites:
       - recipe[nginx-repo]
       - recipe[test::install_nginx]
     includes:
+      - debian-6
+      - debian-7
       - debian-8
 
   - name: dflt_w_ubtu
@@ -44,6 +46,7 @@ suites:
       - recipe[nginx-repo]
       - recipe[test::install_nginx]
     includes:
+      - ubuntu-10.04
       - ubuntu-12.04
       - ubuntu-14.04
       - ubuntu-14.10
@@ -75,6 +78,8 @@ suites:
         nginx-mainline:
           managed: true
     includes:
+      - debian-6
+      - debian-7
       - debian-8
 
   - name: mnln_w_ubtu
@@ -88,6 +93,7 @@ suites:
         nginx-mainline:
           managed: true
     includes:
+      - ubuntu-10.04
       - ubuntu-12.04
       - ubuntu-14.04
       - ubuntu-14.10
