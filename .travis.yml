@@ -10,6 +10,7 @@ services:
 
 # attempt to speed up build by installing Gecode 3.7.3 from Ubuntu 12.04
 before_install:
+  - sudo apt-get update
   - sudo apt-get -y install libqt4-dev libqtcore4 libqtgui4 libboost-dev
   - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecode-dev_3.7.1-3_amd64.deb
   - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecode-doc_3.7.1-3_all.deb
@@ -31,4 +32,5 @@ script:
 
 env:
   global:
+    - USE_SYSTEM_GECODE=1
     - KITCHEN_YAML=.kitchen.docker.yml
