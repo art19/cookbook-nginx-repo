@@ -1,9 +1,22 @@
+#
+# Cookbook Name:: nginx-repo
+# Recipe:: _yum
+#
+#  Installs & configures the NGINX yum repostories.  Any attribute supported by
+#  the [yum cookbook](https://github.com/chef-cookbooks/yum#parameters) is
+#  supported by this cookbook and can be used to override attributes in this
+#  cookbook.
+
+# check is platform is supported
+platform_version = node['platform_version'].to_i.to_s
+fail unless node['nginx-repo']['rhel']['supported-versions'].include?(platform_version)
+
 node['nginx-repo'].each do |repo, value|
   yum_repository repo do
     yum = value['yum']
 
-    # define all attributes even though we are not using them all so that the values
-    #  can be passed through to override yum repository definitions
+    # define all attributes even though we are not using them all so that the
+    #  values can be passed through to override yum repository definitions
 
     # Attribute Sources:
     #  https://github.com/chef-cookbooks/yum

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# nginx package should be installed when a repository is enable
+# nginx package should be installed when a repository is enabled
 describe package('nginx') do
   it { should be_installed }
 end

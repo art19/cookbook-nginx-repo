@@ -1,9 +1,22 @@
+#
+# Cookbook Name:: nginx-repo
+# Recipe:: _apt
+#
+#  Installs & configures the NGINX apt repostories.  Any attribute supported by
+#  the [apt cookbook](https://github.com/chef-cookbooks/apt#parameters) is
+#  supported by this cookbook and can be used to override attributes in this
+#  cookbook.
+
+# check if platform is supported
+codename = node['lsb']['codename']
+fail unless node['nginx-repo']['debian']['supported-codenames'].include?(codename)
+
 node['nginx-repo'].each do |repo, value|
   apt_repository repo do
     apt = value['apt']
 
-    # define all attributes even though we are not using them all so that the values
-    #  can be passed through to override apt repository definitions
+    # define all attributes even though we are not using them all so that the
+    #  values can be passed through to override apt repository definitions
 
     # Attribute Sources:
     #  https://github.com/opscode-cookbooks/apt
