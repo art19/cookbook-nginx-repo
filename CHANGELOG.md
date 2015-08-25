@@ -4,6 +4,13 @@ nginx-repo CHANGELOG
 This file is used to list changes made in each version of the nginx-repo
 cookbook.
 
+0.1.2
+-----
+- St. Isidore de Seville (st.isidore.de.seville@gmail.com)
+  - added OS constraints
+  - faster travis-ci build
+  - updated documentation
+
 0.1.1
 -----
 - St. Isidore de Seville (st.isidore.de.seville@gmail.com)
