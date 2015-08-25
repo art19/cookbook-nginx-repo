@@ -8,9 +8,21 @@ sudo: required
 services:
   - docker
 
+# attempt to speed up build by installing Gecode 3.7.3 from Ubuntu 12.04
+before_install:
+  - sudo apt-get -y install libqt4-dev libqtcore4 libqtgui4 libboost-dev
+  - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecode-dev_3.7.1-3_amd64.deb
+  - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecode-doc_3.7.1-3_all.deb
+  - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecode30_3.7.1-3_amd64.deb
+  - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecodeflatzinc30_3.7.1-3_amd64.deb
+  - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecodegist30_3.7.1-3_amd64.deb
+
 # mitigate travis-ci timing out on
 #  dep-selector-libgecode 1.0.2 with native extensions
-install: travis_wait bundle install
+# install: travis_wait bundle install
+install:
+  - sudo dpkg -i *.deb
+  - bundle install
 
 script:
   - bundle exec rake style
