@@ -18,9 +18,6 @@ before_install:
   - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecodeflatzinc30_3.7.1-3_amd64.deb
   - curl -O http://lug.mtu.edu/ubuntu/pool/universe/g/gecode/libgecodegist30_3.7.1-3_amd64.deb
 
-# mitigate travis-ci timing out on
-#  dep-selector-libgecode 1.0.2 with native extensions
-# install: travis_wait bundle install
 install:
   - sudo dpkg -i *.deb
   - bundle install
