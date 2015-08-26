@@ -8,8 +8,10 @@
 #  cookbook.
 
 # check is platform is supported
-platform_version = node['platform_version'].to_i.to_s
-fail unless node['nginx-repo']['rhel']['supported-versions'].include?(platform_version)
+fail unless node['nginx-repo']['rhel']['supported-versions']
+            .select { |_version, is_included| is_included }
+            .keys
+            .include?(node['platform_version'].to_i.to_s)
 
 node['nginx-repo'].each do |repo, value|
   yum_repository repo do

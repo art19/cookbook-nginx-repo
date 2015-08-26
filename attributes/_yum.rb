@@ -4,7 +4,24 @@
 #
 
 if platform_family?('rhel')
-  default['nginx-repo']['rhel']['supported-versions'] = %w(5 6 7)
+  # RHEL platform support for this cookbook and the NGINX repository.  Designed
+  # to be a private attribute however it can be overridden in the case NGINX
+  # supports additional platforms and this cookbook has not been update yet.
+  #
+  # This check was implemented as a result of the repo could be successfully
+  # installed yet not be valid for a given platform and an NGINX package could
+  # be successfully installed as a result of it being available natively on the
+  # platform it which it was run which results in a false positive for the
+  # consumer of the cookbook.
+  #
+  # The hash key is the codename of the OS/version.  If the hash value evaluates
+  # to true, the OS/version is considered supported.
+
+  default['nginx-repo']['rhel']['supported-versions'] = {
+    '5' => true,
+    '6' => true,
+    '7' => true
+  }
 
   # Does this cookbook manage the install of the NGINX Stable Source Repo?
   default['nginx-repo']['nginx-stable-source']['managed'] = false

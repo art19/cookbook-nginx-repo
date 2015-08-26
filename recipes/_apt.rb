@@ -8,8 +8,10 @@
 #  cookbook.
 
 # check if platform is supported
-codename = node['lsb']['codename']
-fail unless node['nginx-repo']['debian']['supported-codenames'].include?(codename)
+fail unless node['nginx-repo']['debian']['supported-codenames']
+            .select { |_version, is_included| is_included }
+            .keys
+            .include?(node['lsb']['codename'])
 
 node['nginx-repo'].each do |repo, value|
   apt_repository repo do

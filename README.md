@@ -14,7 +14,7 @@ Requirements
 - Ruby 1.9 or higher (preferably from the Chef full-stack installer)
 - Network accessible package repositories
 - [apt Cookbook](https://supermarket.chef.io/cookbooks/apt) (only executed on
-  debian-ish platforms)
+  Debian-ish platforms)
 - [yum Cookbook](https://supermarket.chef.io/cookbooks/yum) (only executed on
   RHEL platforms)
 
@@ -47,6 +47,36 @@ attribute supported by the [apt cookbook](https://github.com/opscode-cookbooks/a
 is supported by this cookbook and can be used to override attributes in this
 cookbook.
 
+- `['nginx-repo']['debian']['supported-codenames']`
+  - _Type:_ Hash
+  - _Description:_
+
+    Debian-ish platform support for this cookbook and the NGINX repository.
+    Designed to be a private attribute however it can be overridden in the case
+    NGINX supports additional platforms and this cookbook has not been updated
+    yet.
+
+    This check was implemented as a result of the repo could be successfully
+    installed yet not be valid for a given platform and an NGINX package could
+    be successfully installed as a result of it being available natively on the
+    platform it which it was run which results in a false positive for the
+    consumer of the cookbook.
+
+    The hash key is the codename of the OS/version.  If the hash value evaluates
+    to true, the OS/version is considered supported.
+  - _Default:_
+
+    ```ruby
+    {
+      squeeze: true,  # Debian 6.x
+      wheezy:  true,  # Debian 7.x
+      jessie:  true,  # Debian 8.x
+      lucid:   true,  # Ubuntu 10.04
+      precise: true,  # Ubuntu 12.04
+      trusty:  true,  # Ubuntu 14.04
+      utopic:  true   # Ubuntu 14.10
+    }
+    ```
 - `['nginx-repo']['nginx-stable']['apt']['uri']`
   - _Type:_ String
   - _Description:_ URI of NGINX Stable Repo
@@ -94,6 +124,31 @@ attribute supported by the [yum cookbook](https://github.com/chef-cookbooks/yum#
 is supported by this cookbook and can be used to override attributes in this
 cookbook.
 
+- `['nginx-repo']['rhel']['supported-versions']`
+  - _Type:_ Hash
+  - _Description:_
+
+    RHEL platform support for this cookbook and the NGINX repository.  Designed
+    to be a private attribute however it can be overridden in the case NGINX
+    supports additional platforms and this cookbook has not been update yet.
+
+    This check was implemented as a result of the repo could be successfully
+    installed yet not be valid for a given platform and an NGINX package could
+    be successfully installed as a result of it being available natively on the
+    platform it which it was run which results in a false positive for the
+    consumer of the cookbook.
+
+    The hash key is the codename of the OS/version.  If the hash value evaluates
+    to true, the OS/version is considered supported.
+  - _Default:_
+
+    ```ruby
+    {
+      '5' => true,
+      '6' => true,
+      '7' => true
+    }
+    ```
 - `['nginx-repo']['nginx-stable-source']['managed']`
   - _Type:_ Boolean
   - _Description:_ Does this cookbook manage the install of the NGINX Stable
