@@ -69,4 +69,35 @@ describe 'nginx-repo::_apt' do
       end
     end
   end
+
+  supported_platforms = {
+    debian: ['6.0.5', '7.0', '8.0'],
+    ubuntu: ['10.04', '12.04', '14.04', '14.10']
+  }
+
+  supported_platforms.each do |platform, versions|
+    versions.each do |version|
+      describe "when on #{platform} #{version}" do
+        let(:chef_run) do
+          ChefSpec::SoloRunner.new(platform: platform.to_s, version: version)
+            .converge(described_recipe)
+        end
+
+        it 'should not raise an error' do
+          expect { chef_run }.to_not raise_error
+        end
+      end
+    end
+  end
+
+  describe 'when on an unsupported platform' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '13.04')
+        .converge(described_recipe)
+    end
+
+    it 'should raise an error' do
+      expect { chef_run }.to raise_error
+    end
+  end
 end
