@@ -8,10 +8,15 @@
 #  cookbook.
 
 # check if platform is supported
-fail unless node['nginx-repo']['debian']['supported-codenames']
-            .select { |_version, is_included| is_included }
-            .keys
-            .include?(node['lsb']['codename'])
+platform_family = node['platform_family']
+platform = node['platform']
+platform_version = node['platform_version']
+
+fail("#{platform_family}/#{platform}/#{platform_version} is not supported by the _apt recipe") \
+  unless node['nginx-repo']['debian']['supported-codenames']
+         .select { |_version, is_included| is_included }
+         .keys
+         .include?(node['lsb']['codename'])
 
 node['nginx-repo'].each do |repo, value|
   apt_repository repo do

@@ -125,7 +125,7 @@ describe 'nginx-repo::_yum' do
     end
 
     it 'should raise an error' do
-      expect { chef_run }.to raise_error
+      expect { chef_run }.to raise_error("rhel/redhat/7.0 is not supported by the _yum recipe")
     end
   end
 end

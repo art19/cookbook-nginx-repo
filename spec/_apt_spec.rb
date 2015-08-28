@@ -97,7 +97,7 @@ describe 'nginx-repo::_apt' do
     end
 
     it 'should raise an error' do
-      expect { chef_run }.to raise_error
+      expect { chef_run }.to raise_error("debian/ubuntu/13.04 is not supported by the _apt recipe")
     end
   end
 end
