@@ -103,4 +103,29 @@ describe 'nginx-repo::_yum' do
       end
     end
   end
+
+  ['5.10', '6.0', '7.0'].each do |version|
+    describe "when on redhat #{version}" do
+      let(:chef_run) do
+        ChefSpec::SoloRunner.new(platform: 'redhat', version: version)
+          .converge(described_recipe)
+      end
+
+      it 'should not raise an error' do
+        expect { chef_run }.to_not raise_error
+      end
+    end
+  end
+
+  describe 'when on an unsupported platform' do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(platform: 'redhat', version: '7.0') do |node|
+        node.set['nginx-repo']['rhel']['supported-versions']['7'] = false
+      end.converge(described_recipe)
+    end
+
+    it 'should raise an error' do
+      expect { chef_run }.to raise_error('rhel/redhat/7.0 is not supported by the _yum recipe')
+    end
+  end
 end

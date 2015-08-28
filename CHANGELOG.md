@@ -7,9 +7,9 @@ cookbook.
 0.1.2
 -----
 - St. Isidore de Seville (st.isidore.de.seville@gmail.com)
-  - added OS constraints
+  - add OS constraints
   - faster travis-ci build
-  - updated documentation
+  - update documentation
 
 0.1.1
 -----
@@ -21,4 +21,4 @@ cookbook.
 0.1.0
 -----
 - St. Isidore de Seville (st.isidore.de.seville@gmail.com)
-  - Initial release of nginx-repo
+  - initial release of nginx-repo
